@@ -1,0 +1,31 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+  await page.getByRole('button', { name: 'Start Application' }).click();
+  await page.getByRole('textbox', { name: 'Phone Number' }).click();
+  await page.getByRole('textbox', { name: 'Phone Number' }).fill('0700000000043');
+  await page.getByRole('button', { name: 'Send OTP' }).click();
+  await page.getByRole('textbox', { name: 'One-Time Password' }).click();
+  await page.getByRole('textbox', { name: 'One-Time Password' }).fill('0000');
+  await page.getByRole('button', { name: 'Verify' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('textbox', { name: 'Full Name *' }).fill('we');
+  await page.getByRole('textbox', { name: 'National ID *' }).click();
+  await page.getByRole('textbox', { name: 'National ID *' }).fill('432432432');
+  await page.getByRole('textbox', { name: 'Email Address' }).click();
+  await page.getByRole('textbox', { name: 'Email Address' }).fill('joh@gmail.com');
+  await page.getByRole('textbox', { name: 'Date of Birth *' }).fill('1333-02-12');
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('spinbutton', { name: 'Loan Amount *' }).click();
+  await page.getByRole('spinbutton', { name: 'Loan Amount *' }).fill('100000');
+  await page.getByRole('textbox', { name: 'Purpose *' }).click();
+  await page.getByRole('textbox', { name: 'Purpose *' }).fill('noqnr0ir');
+  await page.getByRole('button', { name: 'Submit Application' }).click();
+  await page.getByText('Loan term must be one of: 15').click();
+  await page.getByLabel('Loan Term (days) *').selectOption('30');
+  await page.getByRole('button', { name: 'Submit Application' }).click();
+  await page.getByText('PENDING').click();
+  await page.getByRole('heading', { name: 'Application Decision' }).click();
+  await page.getByRole('button', { name: 'Logout' }).click();
+});
